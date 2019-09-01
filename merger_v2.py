@@ -58,6 +58,7 @@ def Merging(mode, src_path, saved):
         print('[!]Unknow mode')
         exit()
 
+    # Final windth, height
     width = images[0].width * x
     height = images[0].height * y
 
@@ -76,13 +77,16 @@ def Merging(mode, src_path, saved):
                 break
 
     template_img.save(saved, 'JPEG', quality=80, optimize=True, Progressive=True)
-    print('[+]Image saved')
+    print('[+]Image saved to {}'.format(os.path.abspath(saved)))
 
 def appendFile(src_path):
-    if os.path.isdir(src_path[0]):
-        src_path = os.listdir(src_path[0])
 
-    print('[.]Images to merge: {}'.format(', '.join(src_path)))
+    if os.path.isdir(src_path[0]):
+        root_path = os.path.abspath(src_path[0])
+        src_path = os.listdir(src_path[0])
+        src_path = [os.path.join(root_path, src) for src in src_path]
+
+    print('[.]Images to merge:\n[.]    {}'.format('\n[.]    '.join(src_path)))
     images = []
     for img in src_path:
         if img.split('.')[-1].lower() in ['jpg', 'jpeg', 'png']:
