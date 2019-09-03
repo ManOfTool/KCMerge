@@ -35,9 +35,9 @@ def Merging(mode, src_path, saved):
 
     # Merging images
     cnt = 0
-    for i in range(x):
-        for j in range(y):
-            template_img.paste(images[cnt], (x_offset + width * i, y_offset + height * j))
+    for i in range(y):
+        for j in range(x):
+            template_img.paste(images[cnt], (x_offset + width * j, y_offset + height * i))
             print('[.]Image{} pasted'.format(cnt))
 
             cnt += 1
